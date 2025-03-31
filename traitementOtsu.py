@@ -88,7 +88,7 @@ def histogramme_projection(img_binaire):
     """
     return np.sum(img_binaire, axis=1)
 
-def estimate_number_of_lines(hist, threshold_ratio=0.2):
+def estimate_number_of_lines(hist, threshold_ratio=0.1):
     """
     Estime le nombre de lignes de texte à partir de l'histogramme.
     
@@ -133,12 +133,12 @@ for image_name in liste_images:
     # --- Méthode K-means ---
     bin_img_kmeans = binarisation_kmeans(img)
     hist_kmeans = histogramme_projection(bin_img_kmeans)
-    num_lines_km, segments_km = estimate_number_of_lines(hist_kmeans, threshold_ratio=0.2)
+    num_lines_km, segments_km = estimate_number_of_lines(hist_kmeans, threshold_ratio=0.1)
     
     # --- Méthode Otsu ---
     bin_img_otsu, seuil_otsu, norm_img = binarisation_otsu(img)
     hist_otsu = histogramme_projection(bin_img_otsu)
-    num_lines_otsu, segments_otsu = estimate_number_of_lines(hist_otsu, threshold_ratio=0.2)
+    num_lines_otsu, segments_otsu = estimate_number_of_lines(hist_otsu, threshold_ratio=0.1)
     
     # Affichage avec matplotlib : comparaison sur 2 lignes (K-means et Otsu)
     fig, axs = plt.subplots(2, 2, figsize=(12, 10))
